@@ -59,7 +59,12 @@ export const sendMessage = async (messageDetails: SendMessage) => {
 			sent = true;
 			break;
 		} catch (e) {
-			// Logger.error(...)
+			// Logger.error|warn(...)
+			// More logic could be added here to look at the specific errors
+			// If or some reason the email was returned as 'bad' or 'unsubscribed',
+			//   a decision to not continue could be made
+			// If a method was conistantly failing n times, perhaps drop it to
+			//   the back of the send array.
 			console.log(`sendMessage: ${i}/${sendOrder.length - 1} ${sendOrder[i]}: FAIL ${e}`);
 			errLog.push(getTypedError(e));
 		}
