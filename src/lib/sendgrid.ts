@@ -3,7 +3,7 @@ import { SendMessage } from '../types';
 import { definedEnv } from '../env';
 
 
-export const sendSendGrid = async (messageDetails: SendMessage) => {
+export const sendSendGrid = async (messageDetails: SendMessage): Promise<boolean> => {
     const { sendGridKey } = definedEnv;
 
     const {
@@ -59,7 +59,7 @@ export const sendSendGrid = async (messageDetails: SendMessage) => {
         // Logger.debug normally
         console.log('sendSendGrid: OK');
         // {data:'',status:202,statusText:'Accepted'}
-        return;
+        return true;
     } catch (e) {
         // TODO: Get SendGrid error from error array
         console.log(`sendSendGrid: FAIL: ${e}`);

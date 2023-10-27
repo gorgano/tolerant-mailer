@@ -3,7 +3,7 @@ import FormData from 'form-data';
 import { SendMessage } from '../types';
 import { definedEnv } from '../env';
 
-export const sendMailGun = async (messageDetails: SendMessage) => {
+export const sendMailGun = async (messageDetails: SendMessage): Promise<boolean> => {
     const {
         to,
         to_name,
@@ -15,7 +15,6 @@ export const sendMailGun = async (messageDetails: SendMessage) => {
 
     const { mailGunKey } = definedEnv;
 
-    //'Mailgun Sandbox <postmaster@sandbox457c1ab32b1440ea972ad1ab9537776d.mailgun.org>'
     let data = new FormData();
     data.append('from', from);
     data.append('to', to);
@@ -37,7 +36,7 @@ export const sendMailGun = async (messageDetails: SendMessage) => {
         // Logger.debug normally
         console.log('sendMailGun: OK');
         // data:{id:'string',message:'Queued...'},status:200,statusText:'OK'
-        return;
+        return true;
     } catch (e) {
         // TODO: Get mailgun error for error array (if available)
         console.log(`sendMailGun: FAIL ${e}`);
