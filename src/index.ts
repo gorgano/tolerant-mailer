@@ -40,7 +40,7 @@ app.post('/email', async (req: Request, res: Response) => {
 		console.log('/email: sendMessage OK');
 		return res.sendStatus(202); // Accepted
 	} catch (e) {
-		console.log(`/email: sendMessage FAIL`);
+		console.log(`/email: sendMessage FAIL: ${e}`);
 		console.log(e);
 		return res.sendStatus(500);
 	}
