@@ -34,12 +34,12 @@ app.post('/email', async (req: Request, res: Response) => {
 		return res.status(400).json({ message: 'Invalid request body' });
 	}
 
-	// const textBody = stripHtml(body).result;
-	const textBody=stripHtml(body);
+	// TODO: Basic email validation
+	const textBody = stripHtml(body);
 
 	try {
 		// TODO: Make Request UUID to pass through functions for better logging
-		await sendMessage({ to, to_name, from, from_name, subject, body:textBody });
+		await sendMessage({ to, to_name, from, from_name, subject, body: textBody });
 		// Note: Would normally use winston or similar, but using
 		//  console for the simplicity of this excersise.
 		console.log('/email: sendMessage OK');
