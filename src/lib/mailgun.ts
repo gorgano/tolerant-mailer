@@ -1,6 +1,7 @@
 import axios from 'axios';
 import FormData from 'form-data';
 import { SendMessage } from '../types';
+import { definedEnv } from '../env';
 
 export const sendMailGun = async (messageDetails: SendMessage) => {
     const {
@@ -12,7 +13,7 @@ export const sendMailGun = async (messageDetails: SendMessage) => {
         body,
     } = messageDetails;
 
-    const mailgunKey: string = 'YXBpOjc2ZDU2YjdiZDJmYzU2MmFiODc1N2QwZjE2YmRmZjc1LTMyNGUwYmIyLWZlODQ0ZjYx';
+    const { mailGunKey } = definedEnv;
 
     //'Mailgun Sandbox <postmaster@sandbox457c1ab32b1440ea972ad1ab9537776d.mailgun.org>'
     let data = new FormData();
@@ -26,7 +27,7 @@ export const sendMailGun = async (messageDetails: SendMessage) => {
         maxBodyLength: Infinity,
         url: 'https://api.mailgun.net/v3/sandbox457c1ab32b1440ea972ad1ab9537776d.mailgun.org/messages',
         headers: {
-            'Authorization': `Basic ${mailgunKey}`,
+            'Authorization': `Basic ${mailGunKey}`,
         },
         data: data
     };

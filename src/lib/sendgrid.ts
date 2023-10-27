@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { SendMessage } from '../types';
+import { definedEnv } from '../env';
+
+
 export const sendSendGrid = async (messageDetails: SendMessage) => {
+    const { sendGridKey } = definedEnv;
+
     const {
         to,
         to_name,
@@ -43,7 +48,7 @@ export const sendSendGrid = async (messageDetails: SendMessage) => {
         maxBodyLength: Infinity,
         url: 'https://api.sendgrid.com/v3/mail/send',
         headers: {
-            'Authorization': 'Bearer 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',
+            'Authorization': `Bearer ${sendGridKey}`,
             'Content-Type': 'application/json'
         },
         data: data
