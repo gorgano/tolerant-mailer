@@ -40,6 +40,11 @@ curl --location 'localhost:8080/email' \
 NOTE: Sendgrid seems to have flagged me as spam and is working intermittently.  MailGun will only send to my email, any other email will result in an error.
 
 
+# Tests
+```
+npm test
+```
+
 # Framework and Libraries
 - Using typescript with Node.
 - Typescript allows for extra reliability with typing that always makes code better.
@@ -53,6 +58,7 @@ NOTE: Sendgrid seems to have flagged me as spam and is working intermittently.  
 - Wanted to include an ID for better tracking through the different functions and log output
 - Wanted a proper logger service
 - Would have liked to use a parameter store to hold values
+- Didn't get to setup a proper build script
 
 
 # Time
