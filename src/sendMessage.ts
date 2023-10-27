@@ -1,7 +1,8 @@
 import { sendMailGun } from './lib/mailgun';
 import { sendSendGrid } from './lib/sendgrid';
-import { SendMessage } from './types';
+import { SendMessage, SendTypes } from './types';
 import { getTypedError } from './lib/utils';
+import { definedEnv } from './env';
 
 class UnableToSend extends Error {
 	primaryError: Error | string;
@@ -13,14 +14,40 @@ class UnableToSend extends Error {
 	}
 }
 
+
+const primary = SendTypes.mailgun;
+const secondary = SendTypes.sendgrid;
+const sendFunctions = {
+	[SendTypes.mailgun]: sendMailGun,
+	[SendTypes.sendgrid]: sendSendGrid,
+};
+
+// const getSendOrder = (): SendTypes[] => {
+// 	const sendOrder: SendTypes[] = [];
+
+// 	const requestedPrimary = env.primarySend;
+// 	if (Object.keys(SendTypes).includes(requestedPrimary)) { sendOrder.push(requestedPrimary); }
+
+// 	// Populate other types that aren't requested primary
+// 	// When no requested primary, this will 'pick' a primary
+// 	Object.keys(SendTypes).forEach((sendType: SendTypes) => {
+// 		if (!sendOrder.includes(sendType)) { sendOrder.push(sendType); }
+// 	});
+
+// 	return sendOrder;
+// }
+
 export const sendMessage = async (messageDetails: SendMessage) => {
+	// const sendOrder = getSendOrder();
 	try {
-		await sendSendGrid(messageDetails);
+		// await sendSendGrid(messageDetails);
+		await sendFunctions[primary](messageDetails);
 	} catch (primaryError) {
 		// Logger.error(...)
 		console.log(`sendMessage: Primary: FAIL ${primaryError}`);
 		try {
-			await sendMailGun(messageDetails);
+			// await sendMailGun(messageDetails);
+			await sendFunctions[secondary](messageDetails);
 		} catch (secondaryError) {
 			// Logger.error
 			console.log(`sendMessage: Primary: FAIL ${secondaryError}`);

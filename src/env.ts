@@ -7,4 +7,5 @@
 export const definedEnv = {
     sendGridKey: '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',
     mailGunKey: 'YXBpOjc2ZDU2YjdiZDJmYzU2MmFiODc1N2QwZjE2YmRmZjc1LTMyNGUwYmIyLWZlODQ0ZjYx',
+    primarySend: 'mailgun',
 };

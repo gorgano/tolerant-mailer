@@ -61,6 +61,7 @@ export const sendSendGrid = async (messageDetails: SendMessage) => {
         // {data:'',status:202,statusText:'Accepted'}
         return;
     } catch (e) {
+        // TODO: Get SendGrid error from error array
         console.log(`sendSendGrid: FAIL: ${e}`);
         throw e;
     }

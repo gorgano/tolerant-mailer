@@ -5,4 +5,11 @@ export interface SendMessage {
     from_name: string,
     subject: string,
     body: string,
-}
+};
+
+
+export enum SendTypes {
+    mailgun = 'mailgun',
+    sendgrid = 'sendgrid',
+};
+

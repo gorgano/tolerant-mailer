@@ -34,6 +34,7 @@ app.post('/email', async (req: Request, res: Response) => {
 	}
 
 	try {
+		// TODO: Make Request UUID to pass through functions for better logging
 		await sendMessage({ to, to_name, from, from_name, subject, body });
 		// Note: Would normally use winston or similar, but using
 		//  console for the simplicity of this excersise.

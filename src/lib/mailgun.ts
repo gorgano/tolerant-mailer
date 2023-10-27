@@ -39,6 +39,7 @@ export const sendMailGun = async (messageDetails: SendMessage) => {
         // data:{id:'string',message:'Queued...'},status:200,statusText:'OK'
         return;
     } catch (e) {
+        // TODO: Get mailgun error for error array (if available)
         console.log(`sendMailGun: FAIL ${e}`);
         throw e;
     }
