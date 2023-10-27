@@ -15,7 +15,7 @@
     "application/json"
   ],
   "paths": {
-    "/send-email": {
+    "/email": {
       "post": {
         "summary": "Sends an email",
         "parameters": [
