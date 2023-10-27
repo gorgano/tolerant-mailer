@@ -11,5 +11,5 @@ export const definedEnv = {
     // Define the primary send method here.
     //   If this was something that watned to be changed dynamically,
     //   storage in a database would be preferable to avoid re-deployment.
-    primarySend: 'mailgun',
+    primarySend: 'sendgrid', // mailgun | sendgrid
 };
